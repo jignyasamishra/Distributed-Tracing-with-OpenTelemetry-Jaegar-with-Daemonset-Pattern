@@ -1,0 +1,45 @@
+# apiVersion: jaegertracing.io/v1
+# kind: Jaeger
+# metadata:
+#   name: jaeger-prod
+#   namespace: observability
+# spec:
+#   strategy: production
+#   storage:
+#       type: elasticsearch
+#       options:
+#         es:
+#           server-urls: http://elasticsearch-master.default:9200
+
+#   collector:
+#     maxReplicas: 1
+#     resources:
+#       limits:
+#         cpu: 100m
+#         memory: 128Mi
+apiVersion: jaegertracing.io/v1
+kind: Jaeger
+metadata:
+  name: jaeger-prod
+  namespace: observability
+spec:
+  strategy: allinone  # You can also keep "production" strategy if needed
+  storage:
+    type: badger  # Use Badger for local storage
+    options:
+      badger:
+        directory-key: /badger/key  # Directory for key storage
+        directory-value: /badger/data  # Directory for value storage
+  volumeMounts:
+  - name: badger-volume
+    mountPath: /badger
+  volumes:
+  - name: badger-volume
+    emptyDir: {}  # Replace this with a Persistent Volume if you want data persistence
+  collector:
+    maxReplicas: 1
+    resources:
+      limits:
+        cpu: 100m
+        memory: 128Mi
+
