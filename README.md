@@ -33,3 +33,11 @@ kubectl apply -f opentel-collector.yaml
  kubectl apply -f demonset-pattern/app.yaml
 
 ```
+# Results
+![image](https://github.com/user-attachments/assets/0ae787bc-0389-4fbc-8f45-70062eb74c75)
+![image](https://github.com/user-attachments/assets/8a108a00-bc1b-4ded-be90-e0a575e2a3e4)
+![image](https://github.com/user-attachments/assets/7cd90262-a89e-4e5a-9c87-c07e94460cb2)
+
+
+
+
